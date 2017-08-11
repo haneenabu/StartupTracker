@@ -12,7 +12,7 @@ public class Event {
     private String[] attendees;
     private static ArrayList<Event> instances = new ArrayList<>();
 
-    private int increment;
+    private static int increment;
     private int id;
     //Constructor
     public Event (String name, String description, String [] attendees){
@@ -26,7 +26,7 @@ public class Event {
     }
     public static void clearAllEvents(){
         instances.clear();
-//        increment =0;
+        increment =0;
     }
     public static Event findById(int id){
         for (Event instance : instances){
@@ -41,7 +41,7 @@ public class Event {
         this.description = description;
         this.attendees = attendees;
     }
-    public void deleteById(int id){
+    public static void deleteById(int id){
         instances.remove(Event.findById(id));
     }
     public String findAttendeeNames(String person){

@@ -14,7 +14,12 @@ import static spark.Spark.*;
 public class App {
     public static void main(String[] args) {
         staticFileLocation("/public");
-
+        get("/event/about", (request, response) ->{
+            Map<String, Object> model = new HashMap<>();
+            ArrayList<Event> events = Event.getInstances();
+            model.put("events", events);
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
 
         get("/", (request, response) ->{
             Map<String, Object> model = new HashMap<>();
@@ -67,5 +72,12 @@ public class App {
             return null;
         });
 
+        //delete
+        get("/event/:id/delete", (request,response)-> {
+            int idOfEventToDelete = Integer.parseInt(request.params("id")); //pull id - must match route segment
+            Event.deleteById(idOfEventToDelete);
+            response.redirect("/");
+            return null;
+        });
     }
 }
