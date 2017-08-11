@@ -16,6 +16,7 @@ public class EventTest {
 
     @After
     public void tearDown() throws Exception {
+        Event.clearAllEvents();
     }
     @Test
     public void Event_Instantiate_True(){
@@ -35,6 +36,14 @@ public class EventTest {
         assertTrue(Event.getInstances().contains(newEvent));
         assertTrue(Event.getInstances().contains(newEvent2));
 
+    }
+    @Test
+    public void ClearsAllEvent() throws Exception{
+        Event newEvent = setupNewEvent();
+        Event newEvent2 = new Event("Coding in Germany","Summer 2018");
+        Event.clearAllEvents();
+        assertFalse(Event.getInstances().contains(newEvent));
+        assertFalse(Event.getInstances().contains(newEvent2));
     }
 
     //helper methods

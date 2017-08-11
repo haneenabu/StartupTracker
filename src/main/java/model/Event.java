@@ -17,6 +17,9 @@ public class Event {
         this.description = description;
         instances.add(this);
     }
+    public static void clearAllEvents(){
+        instances.clear();
+    }
 
     //getters
     public String getName(){
