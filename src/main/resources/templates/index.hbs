@@ -5,10 +5,8 @@
     {{#if events}}
         {{#each events }}
             <div class="col-md-6">
-                <p class="name">Event Title:</p>
-                <p>{{name}}</p>
-                <p class="description">Event description:</p>
-                <p><br><a href="/event/{{id}}">{{description}}</a></p>
+                <p><a href="/event/{{id}}">{{name}}</a></p>
+
             </div>
         {{/each}}
     {{else}}

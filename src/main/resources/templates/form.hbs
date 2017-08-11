@@ -1,5 +1,26 @@
 {{#partial "content"}}
+    {{#if editEvent}}
 
+        <div class="well">
+            <h1>Edit Event</h1>
+            <form action="/event/{{editEvent.id}}/edit" method="post">
+                <div class ="form-group">
+                    <label for="eventName">Event Title: </label>
+                    <input id="eventName" name="eventName" type="text" placeholder="{{editEvent.eventName}}">
+                </div>
+                 <div class ="form-group">
+                    <label for="eventDescription">Event Description: </label>
+                    <input id="eventDescription" name="eventDescription" type="text" placeholder="{{editEvent.eventDescription}}>
+                </div>
+                <div class="form-group">
+                    <label for="eventAttendees">Event Attendees: </label>
+                    <input id="eventAttendees" name="eventAttendees" type="text" placeholder="{{editEvent.eventAttendees}}>
+                </div>
+            <button type="submit" class="btn btn-success">Update Event!</button>
+            </form>
+        </div>
+
+    {{else}}
         <div class="well">
             <h1>Add a new Event</h1>
 
@@ -20,7 +41,7 @@
                 <button type="submit" class="btn btn-success">Add Event!</button>
             </form>
             </div>
-
+    {{/if}}
 {{/partial}}
 
 {{> layout.hbs}}

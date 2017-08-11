@@ -31,13 +31,13 @@ public class Event {
         increment =0;
     }
     public static Event findById(int id){
-        Event objects = null;
+
         for (Event instance : instances){
-            if (instance.getId() == id){
-                objects = instance;
+            if (instance.id == id){
+                return instance;
             }
         }
-        return objects;
+        return null;
     }
     public void update(String name, String description, String [] attendees){
         this.name =name;
