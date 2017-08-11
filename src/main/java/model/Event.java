@@ -10,12 +10,10 @@ public class Event {
     private String name;
     private String description;
     private String[] attendees;
-
-//    private List<String> attendeesList = new ArrayList<>();
     private static ArrayList<Event> instances = new ArrayList<>();
-    private int id;
-    public static int increment =0;
 
+    private int increment;
+    private int id;
     //Constructor
     public Event (String name, String description, String [] attendees){
         this.name = name;
@@ -28,10 +26,9 @@ public class Event {
     }
     public static void clearAllEvents(){
         instances.clear();
-        increment =0;
+//        increment =0;
     }
     public static Event findById(int id){
-
         for (Event instance : instances){
             if (instance.id == id){
                 return instance;

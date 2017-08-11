@@ -55,7 +55,7 @@ public class App {
             return new ModelAndView(model, "form.hbs");
         }, new HandlebarsTemplateEngine());
         //post edited item
-        post("/item/:id/edit", (request, response) -> {
+        post("/event/:id/edit", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = request.queryParams("eventName");
             String newDescription = request.queryParams("eventDescription");
