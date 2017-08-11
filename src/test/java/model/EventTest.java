@@ -69,7 +69,20 @@ public class EventTest {
         assertEquals(2, Event.findById(newEvent2.getId()).getId());
         assertEquals("Epicodus Coding School", Event.findById(newEvent2.getId()).getName());
     }
-
+    @Test
+    public void deleteBySpecificId() throws Exception{
+        Event newEvent = setupNewEvent();
+        Event newEvent2 = new Event("Epicodus", "December 2016");
+        newEvent.deleteById(1);
+        assertEquals(1, Event.getInstances().size());
+        assertEquals("Epicodus", Event.findById(newEvent2.getId()).getName());
+    }
+    @Test
+    public void updateEvent_True() throws Exception{
+        Event newEvent = setupNewEvent();
+        newEvent.update("test", "2");
+        assertEquals("test", newEvent.getName());
+    }
 
     //helper methods
     public Event setupNewEvent(){

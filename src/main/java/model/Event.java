@@ -33,6 +33,13 @@ public class Event {
         }
         return objects;
     }
+    public void update(String name, String description){
+        this.name =name;
+        this.description = description;
+    }
+    public void deleteById(int id){
+        instances.remove(Event.findById(id));
+    }
     //getters
     public String getName(){
         return name;
