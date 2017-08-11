@@ -17,7 +17,8 @@ public class Event {
         this.name = name;
         this.description = description;
         instances.add(this);
-        this.id = increment +1;
+        increment ++;
+        this.id = increment;
     }
     public static void clearAllEvents(){
         instances.clear();

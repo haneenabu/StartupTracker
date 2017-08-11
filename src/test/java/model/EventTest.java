@@ -50,6 +50,15 @@ public class EventTest {
         Event newEvent = setupNewEvent();
         assertEquals(1, newEvent.getId());
     }
+    @Test
+    public void EventInstantiateWithMultipleEntries() throws Exception {
+        Event newEvent = setupNewEvent();
+        Event newEvent2 = new Event("PDXWIT Presentation", "Monday, August 14, 2017 from 5–7:30pm");
+        assertEquals(1, newEvent.getId());
+        assertEquals(2, newEvent2.getId());
+    }
+
+
     //helper methods
     public Event setupNewEvent(){
         return new Event ("Code Fun", "Coding Event Description");
