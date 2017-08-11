@@ -22,6 +22,11 @@ public class App {
             model.put("events", events);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+        //show new event form
+        get("/event/new", (request, response) -> {
+            Map<String,Object> model = new HashMap<>();
+            return new ModelAndView(model, "form.hbs");
+        }, new HandlebarsTemplateEngine());
 
     }
 }
