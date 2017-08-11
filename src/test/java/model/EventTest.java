@@ -28,6 +28,14 @@ public class EventTest {
         Event newEvent = setupNewEvent();
         assertEquals("Code Fun", newEvent.getName());
     }
+    @Test
+    public void AllEventContainsSelectedInstances_True() throws Exception{
+        Event newEvent = setupNewEvent();
+        Event newEvent2= new Event("Get Coding", "description two");
+        assertTrue(Event.getInstances().contains(newEvent));
+        assertTrue(Event.getInstances().contains(newEvent2));
+
+    }
 
     //helper methods
     public Event setupNewEvent(){
