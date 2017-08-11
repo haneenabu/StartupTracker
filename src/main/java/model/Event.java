@@ -9,7 +9,7 @@ public class Event {
     private String name;
     private String description;
     private static ArrayList<Event> instances = new ArrayList<>();
-
+    private int id;
 
     //constructor
     public Event (String name, String description){
@@ -30,5 +30,8 @@ public class Event {
     }
     public static ArrayList<Event> getInstances() {
         return instances;
+    }
+    public int getId(){
+        return id;
     }
 }

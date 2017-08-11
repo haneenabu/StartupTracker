@@ -38,14 +38,18 @@ public class EventTest {
 
     }
     @Test
-    public void ClearsAllEvent() throws Exception{
+    public void ClearsAllEvent_False() throws Exception{
         Event newEvent = setupNewEvent();
         Event newEvent2 = new Event("Coding in Germany","Summer 2018");
         Event.clearAllEvents();
         assertFalse(Event.getInstances().contains(newEvent));
         assertFalse(Event.getInstances().contains(newEvent2));
     }
-
+    @Test
+    public void EventInstantiatesWithId() throws Exception {
+        Event newEvent = setupNewEvent();
+        assertEquals(1, newEvent.getId());
+    }
     //helper methods
     public Event setupNewEvent(){
         return new Event ("Code Fun", "Coding Event Description");
