@@ -30,6 +30,11 @@ public class EventTest {
         assertEquals("Code Fun", newEvent.getName());
     }
     @Test
+    public void InstantiatesWithContentDescription_True() throws Exception{
+        Event newEvent = setupNewEvent();
+        assertEquals("Coding Event Description", newEvent.getDescription());
+    }
+    @Test
     public void AllEventContainsSelectedInstances_True() throws Exception{
         Event newEvent = setupNewEvent();
         Event newEvent2= new Event("Get Coding", "description two");
@@ -56,6 +61,13 @@ public class EventTest {
         Event newEvent2 = new Event("PDXWIT Presentation", "Monday, August 14, 2017 from 5–7:30pm");
         assertEquals(1, newEvent.getId());
         assertEquals(2, newEvent2.getId());
+    }
+    @Test
+    public void findBySpecificId() throws Exception{
+        Event newEvent = setupNewEvent();
+        Event newEvent2 = new Event("Epicodus Coding School", "Job hunting after graduation");
+        assertEquals(2, Event.findById(newEvent2.getId()).getId());
+        assertEquals("Epicodus Coding School", Event.findById(newEvent2.getId()).getName());
     }
 
 

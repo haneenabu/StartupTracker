@@ -24,7 +24,15 @@ public class Event {
         instances.clear();
         increment =0;
     }
-
+    public static Event findById(int id){
+        Event objects = null;
+        for (Event instance : instances){
+            if (instance.getId() == id){
+                objects = instance;
+            }
+        }
+        return objects;
+    }
     //getters
     public String getName(){
         return name;
