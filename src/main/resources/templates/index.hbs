@@ -1,0 +1,19 @@
+{{#partial "content"}}
+
+    <h1>Startup Event list!</h1>
+
+    {{#if events}}
+        {{#each events }}
+            <div class="col-md-6">
+                <p class="name">Event Title:</p>
+                <p>{{name}}</p>
+                <p class="description">Event description:</p>
+                <p><br><a href="/event/{{id}}">{{description}}</a></p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Events Available!</p>
+    {{/if}}
+{{/partial}}
+
+{{> layout.hbs}}

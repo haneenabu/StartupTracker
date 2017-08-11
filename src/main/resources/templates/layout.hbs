@@ -1,0 +1,35 @@
+<head>
+    <title>{{#block "title"}}StartUp Site{{/block}}</title>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/app.css'>
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento+Sans" rel="stylesheet">
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><a href="/">See All Entries</a></li>
+    <li role="presentation"><a href="/event/new">Add a New Location</a></li>
+</ul>
+<div class="container">
+    <!--begin main template-->
+    <div class="page-header">
+        <h1>StartUp Weekend.... <small>Your Dreams Begin Here!</small></h1>
+    </div>
+
+    <div class="col-md-12">
+        {{#block "content"}}
+        {{/block}}
+
+    </div>
+</div>
+<!--end main template-->
+{{#block "footer"}}
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><a href="/event/delete">Delete All Events!</a></p>
+        </div>
+    </footer>
+    </body>
+    </html>
+{{/block}}

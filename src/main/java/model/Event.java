@@ -12,7 +12,7 @@ public class Event {
     private int id;
     public static int increment =0;
 
-    //constructor
+    //Constructor
     public Event (String name, String description){
         this.name = name;
         this.description = description;
@@ -40,7 +40,8 @@ public class Event {
     public void deleteById(int id){
         instances.remove(Event.findById(id));
     }
-    //getters
+
+    //Getters
     public String getName(){
         return name;
     }
