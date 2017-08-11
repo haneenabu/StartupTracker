@@ -10,15 +10,18 @@ public class Event {
     private String description;
     private static ArrayList<Event> instances = new ArrayList<>();
     private int id;
+    public static int increment =0;
 
     //constructor
     public Event (String name, String description){
         this.name = name;
         this.description = description;
         instances.add(this);
+        this.id = increment +1;
     }
     public static void clearAllEvents(){
         instances.clear();
+        increment =0;
     }
 
     //getters

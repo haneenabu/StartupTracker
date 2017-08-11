@@ -29,6 +29,7 @@
 gradle/
 gradlew*
 Settings.gradle
+build/
 
 
 # CMake
