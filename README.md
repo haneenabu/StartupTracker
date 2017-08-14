@@ -54,4 +54,4 @@ Input     | Output
  Delete an Event. | Event is successfully deleted
  
  
- ![Alt text](http://public/images/background.jpg?raw=true " title")
+ ![Alt text](https://github.com/haneenabu/StartupTracker/blob/master/src/main/resources/public/images/background.jpg " title")
