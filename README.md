@@ -48,6 +48,10 @@ Specs
 
 Input     | Output
 -------- | ---
- | 
-    |
-    |
+ Title: Cool Code | ID for that entry
+ Create an Event   | Event is added to the site
+ Update an Event    | Event is successfully updated 
+ Delete an Event. | Event is successfully deleted
+ 
+ 
+ ![Alt text](http://images/background.jpg " title")
