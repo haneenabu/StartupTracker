@@ -54,4 +54,4 @@ Input     | Output
  Delete an Event. | Event is successfully deleted
  
  
- ![Alt text](http://images/background.jpg " title")
+ ![Alt text](http://public/images/background.jpg?raw=true " title")
