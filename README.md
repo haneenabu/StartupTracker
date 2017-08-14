@@ -24,15 +24,19 @@ StartUp stores your events in your browser, which means all your events are auto
 #### <i class="icon-file"></i> Create an Event
 
 To create an event select <i class="icon-folder-open"></i> **Add a New Event** Tab in the navigation bar on the top left part of the site. You can create a new event by clicking <i class="icon-file"></i> **Add Event** in the event form.
+ ![Alt text](https://github.com/haneenabu/StartupTracker/blob/master/src/main/resources/public/images/create-event.png)
 
 #### <i class="icon-folder-open"></i> Switch to another event
 
 All your local documents are listed in the on the home page. You can switch from one to another by clicking an event title in the list!
 
+ ![Alt text](https://github.com/haneenabu/StartupTracker/blob/master/src/main/resources/public/images/Switch.png)
+
 #### <i class="icon-trash"></i> Delete an Event
 
 You can delete the current document by clicking <i class="icon-trash"></i> **Delete Event** on the event detail page. You can get to it by selecting the desired event in the home page.
-
+ ![Alt text](https://github.com/haneenabu/StartupTracker/blob/master/src/main/resources/public/images/Delete.png)
+ 
 > **Tip:** Check out the [<i class="icon-upload"></i> About Us](#publish-a-document) page for a description of our site and organization.
 
 ----------
