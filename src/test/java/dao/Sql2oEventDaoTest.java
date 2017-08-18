@@ -73,6 +73,15 @@ public class Sql2oEventDaoTest {
         eventDao.update("Edited Event", "This is a description", id);
         assertEquals("Edited Event", eventDao.findById(id).getName());
     }
+    @Test
+    public void eventDeleteAll_True() throws Exception{
+        Event event = setNewEvent();
+        Event event1 = setNewEvent2();
+        eventDao.add(event);
+        eventDao.add(event1);
+        eventDao.deleteAllEvents();
+        assertEquals(0, eventDao.getAllEvents().size());
+    }
 
 
     //Helper Method

@@ -64,12 +64,17 @@ public class Sql2oEventDao implements EventDao{
                     .addParameter("description", description)
                     .addParameter("id", id)
                     .executeUpdate();
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 
     @Override
     public void deleteAllEvents() {
-
+        try(Connection con = sql2o.open()) {
+            con.createQuery("DELETE FROM event")
+                    .executeUpdate();
+        }
     }
 
     @Override
