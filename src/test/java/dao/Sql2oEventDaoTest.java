@@ -1,4 +1,5 @@
 package dao;
+import model.Attendee;
 import model.Event;
 import org.junit.After;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class Sql2oEventDaoTest {
     private Sql2oEventDao eventDao;
-    //private Sql2oAttendees
+    private Sql2oAttendeeDao attendeeDao;
     private Connection conn;
 
     @Before
@@ -21,7 +22,7 @@ public class Sql2oEventDaoTest {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
         Sql2o sql2o = new Sql2o(connectionString,"","");
         eventDao = new Sql2oEventDao(sql2o);
-        //attendeeDao = new Sql2oEventDao(sql2o);
+        attendeeDao = new Sql2oAttendeeDao(sql2o);
         conn = sql2o.open();
     }
 
@@ -91,6 +92,15 @@ public class Sql2oEventDaoTest {
         int id = event1.getId();
         eventDao.deleteEventById(id);
         assertEquals(1, eventDao.getAllEvents().size());
+    }
+    @Test
+    public void getAllAttendeesByEventId_True()throws Exception{
+        Event event = setNewEvent();
+        eventDao.add(event);
+        int eventId = event.getId();
+        Attendee attendee = new Attendee("Farah", 21, eventId);
+        attendeeDao.add(attendee);
+        assertEquals(1, eventDao.getAllAttendeesByEvent(eventId).size());
     }
 
 

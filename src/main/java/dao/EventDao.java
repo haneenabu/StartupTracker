@@ -1,5 +1,6 @@
 package dao;
 
+import model.Attendee;
 import model.Event;
 
 import java.util.List;
@@ -11,6 +12,8 @@ public interface EventDao {
     void add(Event event);
 
     List<Event> getAllEvents();
+
+    List<Attendee> getAllAttendeesByEvent(int eventId);
 
     Event findById(int id);
 
