@@ -82,6 +82,16 @@ public class Sql2oEventDaoTest {
         eventDao.deleteAllEvents();
         assertEquals(0, eventDao.getAllEvents().size());
     }
+    @Test
+    public void eventDeleteById_True() throws Exception{
+        Event event = setNewEvent();
+        Event event1 = setNewEvent2();
+        eventDao.add(event);
+        eventDao.add(event1);
+        int id = event1.getId();
+        eventDao.deleteEventById(id);
+        assertEquals(1, eventDao.getAllEvents().size());
+    }
 
 
     //Helper Method

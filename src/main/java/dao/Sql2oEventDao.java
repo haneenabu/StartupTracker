@@ -79,6 +79,10 @@ public class Sql2oEventDao implements EventDao{
 
     @Override
     public void deleteEventById(int id) {
-
+        try(Connection con = sql2o.open()){
+            con.createQuery("DELETE FROM event WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }
     }
 }
