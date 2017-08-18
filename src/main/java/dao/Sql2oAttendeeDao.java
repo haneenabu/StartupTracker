@@ -38,12 +38,24 @@ public class Sql2oAttendeeDao implements AttendeeDao{
 
     @Override
     public Attendee findAttendeeById(int id) {
-        return null;
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM attendee WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Attendee.class);
+        }
     }
 
     @Override
-    public void updateAttendee(String name, int age, int id, int attendeeId) {
-
+    public void updateAttendee(String attendeeName, int age, int id, int attendeeId) {
+        try(Connection con = sql2o.open()){
+            con.createQuery("UPDATE attendee SET (attendeeName, age) = (:attendeeName, :age) WHERE id = :id")
+                    .addParameter("attendeeName", attendeeName)
+                    .addParameter("age", age)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
     @Override
