@@ -53,7 +53,8 @@ public class Sql2oAttendeeDaoTest {
         assertEquals(attendee, foundAttendee);
     }
 
-    @Test public void attendeeUpdateById_true() throws Exception{
+    @Test
+    public void attendeeUpdateById_true() throws Exception{
         Attendee attendee = setUpAttendee();
         Attendee attendee1 = setUpAttendee2();
         attendeeDao.add(attendee);
@@ -71,6 +72,15 @@ public class Sql2oAttendeeDaoTest {
         attendeeDao.add(attendee1);
         attendeeDao.deleteAllAttendees();
         assertEquals(0, attendeeDao.getAllAttendees().size());
+    }
+    @Test
+    public void attendeeDeleteById_True()throws Exception{
+        Attendee attendee = setUpAttendee();
+        Attendee attendee1 = setUpAttendee2();
+        attendeeDao.add(attendee);
+        attendeeDao.add(attendee1);
+        attendeeDao.deleteAttendeeById(attendee.getId());
+        assertEquals(1, attendeeDao.getAllAttendees().size());
     }
 
 
