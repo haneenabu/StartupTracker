@@ -53,6 +53,16 @@ public class Sql2oEventDaoTest {
         Event foundEvent = eventDao.findById(event.getId());
         assertEquals(event, foundEvent);
     }
+
+    @Test
+    public void eventFindByName_True () throws Exception{
+        Event event = setNewEvent();
+        Event event2 = setNewEvent2();
+        eventDao.add(event);
+        eventDao.add(event2);
+        int id = eventDao.findByName(event.getName());
+        assertEquals(1, id);
+    }
     //Helper Method
     public Event setNewEvent(){
         return new Event("Event One", "Learn how to code!");

@@ -49,7 +49,11 @@ public class Sql2oEventDao implements EventDao{
 
     @Override
     public Integer findByName(String name) {
-        return null;
+        try(Connection con = sql2o.open()){
+            return (Integer) con.createQuery("SELECT id FROM event WHERE name = :name")
+                    .addParameter("name", name)
+                    .executeAndFetchFirst(Integer.class);
+        }
     }
 
     @Override
