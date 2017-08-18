@@ -35,10 +35,22 @@ public class Sql2oEventDaoTest {
         eventDao.add(event);
         assertEquals(1, event.getId());
     }
+    @Test
+    public void getAllEvents() throws Exception{
+        Event event = setNewEvent();
+        Event event2 = setNewEvent2();
+        eventDao.add(event);
+        eventDao.add(event2);
+        assertEquals(2, eventDao.getAllEvents().size());
+
+    }
 
 
     //Helper Method
     public Event setNewEvent(){
         return new Event("Event One", "Learn how to code!");
+    }
+    public Event setNewEvent2(){
+        return new Event("Event Two", "Learn how to land the job!");
     }
 }
