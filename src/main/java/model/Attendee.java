@@ -9,7 +9,7 @@ public class Attendee {
     private int id;
     private int eventId;
 
-    public Attendee (String attendeeName, int age, int id, int eventId){
+    public Attendee (String attendeeName, int age, int eventId){
         this.attendeeName = attendeeName;
         this.age = age;
         this.eventId = eventId;
