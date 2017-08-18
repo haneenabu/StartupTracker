@@ -1,0 +1,56 @@
+{{#partial "content"}}
+
+    {{#if editAttendees}}
+
+        <div class="well">
+            <h1>Add a new HappyHour</h1>
+            <form action="/event/{{editAttendees.eventId}}/attendees/{{editAttendees.id}}/edit" method="post">
+                <div class="form-group">
+                    <label for="event">Event:</label>
+                    <select id="event" name="event" required>
+                        {{#each events}}
+                            <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class ="form-group">
+                    <label for="AttendeeName">Name of HappyHour: </label>
+                    <input id="AttendeeName" name="AttendeeName" type="text" class="form-control" value="{{editAttendee.attendeeName}}" required>
+                </div>
+                <div class ="form-group">
+                    <label for="age">Age: </label>
+                    <input id="age" name="age" type="number" class="form-control" value="{{editAttendees.age}}" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">Update Attendee</button>
+            </form>
+        </div>
+
+    {{else}}
+        <div class="well">
+            <h1>Add a new Attendee</h1>
+            <form action="/attendees/new" method="post">
+                <div class="form-group">
+                    <label for="event">Event:</label>
+                    <select id="event" name="event" required>
+                        {{#each events}}
+                            <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class ="form-group">
+                    <label for="AttendeeName">Name of Attendee: </label>
+                    <input id="AttendeeName" name="AttendeeName" type="text" class="form-control" required>
+                </div>
+                <div class ="form-group">
+                    <label for="age">Age: </label>
+                    <input id="age" name="age" type="number" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success">Submit!</button>
+            </form>
+        </div>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}

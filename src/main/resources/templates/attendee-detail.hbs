@@ -1,0 +1,16 @@
+{{#partial "content"}}
+    {{#if attendee}}
+        <div class="well">
+            <h3>Details About {{attendee.attendeeName}}: </h3>
+            <ul>
+                <li>{{attendee.age}}</li>
+            </ul>
+            <a class="btn btn-info" href="/events/{{attendee.eventId}}/attendees/{{attendee.id}}/edit">Edit</a>
+            <a class="btn btn-info" href="/events/{{attendee.eventId}}/attendees/{{attendee.id}}/delete">delete</a>
+
+        </div>
+    {{/if}}
+
+{{/partial}}
+
+{{> layout.hbs}}

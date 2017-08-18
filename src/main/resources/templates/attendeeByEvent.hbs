@@ -1,0 +1,16 @@
+{{#partial "content"}}
+    <h3>{{thisEvent.name}}</h3>
+    {{#if attendees}}
+        {{#each attendees}}
+            <div class="well">
+                <h3><a href="event/{{thisEvent.id}}/attendees/{{id}}">{{attendeeName}}: </a></h3>
+            </div>
+        {{/each}}
+    {{/if}}
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><a href="/event/{{thisEvent.id}}/delete">Delete this Event!</a></p>
+        </div>
+    </footer>
+{{/partial}}

@@ -1,17 +1,23 @@
 {{#partial "content"}}
 
-    <h1>Startup Event list!</h1>
+    <h1>Startup Attendee list!</h1>
 
-    {{#if events}}
-        {{#each events }}
+    {{#if attendees}}
+        {{#each attendees }}
             <div class="col-md-6">
-                <p><a href="/event/{{id}}">{{name}}</a></p>
+                <p><a href="/event/{{eventId}}/attendees/{{id}}">{{attendeeName}}</a></p>
 
             </div>
         {{/each}}
     {{else}}
-        <p>No Events Available!</p>
+        <p>No Attendees Available!</p>
     {{/if}}
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted"><a href="/attendees/delete">Delete All Attendees!</a></p>
+        </div>
+    </footer>
 {{/partial}}
 
 {{> layout.hbs}}
