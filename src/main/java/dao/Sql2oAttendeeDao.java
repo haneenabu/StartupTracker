@@ -60,11 +60,21 @@ public class Sql2oAttendeeDao implements AttendeeDao{
 
     @Override
     public void deleteAllAttendees() {
-
+        try(Connection con = sql2o.open()){
+            con.createQuery("DELETE FROM attendee")
+                    .executeUpdate();
+        }
     }
 
     @Override
     public void deleteAttendeeById(int id) {
+        try(Connection con = sql2o.open()){
+            con.createQuery("DELETE FROM attendee WHERE id =:id")
+                    .addParameter("id", id)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println(ex);
+        }
 
     }
 }
