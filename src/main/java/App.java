@@ -1,9 +1,13 @@
+import dao.Sql2oAttendeeDao;
+import dao.Sql2oEventDao;
 import model.Event;
+import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static spark.Spark.staticFileLocation;
@@ -13,14 +17,19 @@ import static spark.Spark.*;
  */
 public class App {
     public static void main(String[] args) {
-//        staticFileLocation("/public");
-//        get("/event/about", (request, response) ->{
-//            Map<String, Object> model = new HashMap<>();
-//            ArrayList<Event> events = Event.getInstances();
-//            model.put("events", events);
-//            return new ModelAndView(model, "about.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
+        staticFileLocation("/public");
+        String connectionString = "jdbc:h2:~/attendee.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2oAttendeeDao attendeeDao = new Sql2oAttendeeDao(sql2o);
+        Sql2oEventDao eventDao = new Sql2oEventDao(sql2o);
+
+        get("/event/about", (request, response) ->{
+            Map<String, Object> model = new HashMap<>();
+            List<Event> events = eventDao.getAllEvents();
+            model.put("events", events);
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        get("/", (request, response) ->{
 //            Map<String, Object> model = new HashMap<>();
 //            ArrayList<Event> events = Event.getInstances();

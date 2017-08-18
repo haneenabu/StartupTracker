@@ -41,7 +41,7 @@ public class Sql2oEventDao implements EventDao{
     @Override
     public List<Attendee> getAllAttendeesByEvent(int eventId) {
         try(Connection con = sql2o.open()){
-            return con.createQuery("SELECT * FROM attendee WHERE eventId= : eventId")
+            return con.createQuery("SELECT * FROM attendee WHERE eventId= :eventId")
                     .addParameter("eventId", eventId)
                     .executeAndFetch(Attendee.class);
         }
