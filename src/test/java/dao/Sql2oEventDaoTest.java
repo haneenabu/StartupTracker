@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import sun.reflect.annotation.ExceptionProxy;
 
 
 import static org.junit.Assert.*;
@@ -42,10 +43,16 @@ public class Sql2oEventDaoTest {
         eventDao.add(event);
         eventDao.add(event2);
         assertEquals(2, eventDao.getAllEvents().size());
-
     }
-
-
+    @Test
+    public void eventFindById_True() throws Exception{
+        Event event = setNewEvent();
+        Event event2 = setNewEvent2();
+        eventDao.add(event);
+        eventDao.add(event2);
+        Event foundEvent = eventDao.findById(event.getId());
+        assertEquals(event, foundEvent);
+    }
     //Helper Method
     public Event setNewEvent(){
         return new Event("Event One", "Learn how to code!");
