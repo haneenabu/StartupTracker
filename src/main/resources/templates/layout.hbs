@@ -1,45 +1,53 @@
-<head>
-    <title>{{#block "title"}}StartUp Site{{/block}}</title>
+{{#block "header"}}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{#block "title"}}StartUp Site{{/block}}</title>
 
-    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='/app.css'>
-    <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento+Sans" rel="stylesheet">
-</head>
-<body>
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="/">Home</a></li>
-    <li role="presentation"><a href="/">See All Attendees</a></li>
-    <li role="presentation"><a href="/attendees/new">Add a New Attendee</a></li>
-    <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            Events <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            {{#if events}}
-                {{#each events}}
-                    <li><a href="/event/{{id}}">{{name}}</a></li>
-                {{/each}}
-                <li><a href="/event/new">Add an Event</a></li>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='/app.css'>
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Quattrocento+Sans" rel="stylesheet">
+    </head>
+    <body>
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/">See All Events</a></li>
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Events <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {{#if events}}
+                    {{#each events}}
+                        <li><a href="/event/{{id}}">{{name}}</a></li>
+                    {{/each}}
+                    <li><a href="/event/new">Add an Event</a></li>
 
-            {{else}}
-                <li><a href="/event/new">Add an Event</a></li>
-            {{/if}}
-        </ul>
-    </li>
-    <li role="presentation"><a href="/event/about">About Us</a></li>
-</ul>
-<div class="container">
-    <!--begin main template-->
-    <div class="page-header">
-        <h1>StartUp Weekend.... <small>Your Dreams Begin Here!</small></h1>
+                {{else}}
+                    <li><a href="/event/new">Add an Event</a></li>
+                {{/if}}
+            </ul>
+        </li>
+        <li role="presentation"><a href="/attendees/new">Add a new attendee!</a></li>
+
+    </ul>
+{{/block}}
+
+    <div class="container">
+        <!--begin main template-->
+        <div class="page-header">
+            <h1>StartUp Weekend.... <small>Your Dreams Begin Here!</small></h1>
+        </div>
+
+        <div class="col-md-12">
+            {{#block "content"}}
+            {{/block}}
+
+        </div>
     </div>
-
-    <div class="col-md-12">
-        {{#block "content"}}
-        {{/block}}
-
-    </div>
-</div>
 <!--end main template-->
 {{#block "footer"}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </html>
 {{/block}}
