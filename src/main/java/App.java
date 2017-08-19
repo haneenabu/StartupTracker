@@ -5,6 +5,8 @@ import model.Event;
 import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.ArrayList;
@@ -62,29 +64,29 @@ public class App {
             return null;
         });
 
-//        //to edit existing event
-//        get("/event/:id/edit", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            Event foundEvent = eventDao.findById(Integer.parseInt(request.params("id")));
-//            model.put("editEvent", foundEvent);
-//            return new ModelAndView(model, "form.hbs");
-//        }, new HandlebarsTemplateEngine());
-//
-//
-//        //post edited item
-//        post("/event/:id/edit", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            String name = request.queryParams("eventName");
-//            String description = request.queryParams("eventDescription");
-//            int id = Integer.parseInt(request.params("id"));
-//            eventDao.update(name, description, id);
-//            List<Attendee>attendeeList = attendeeDao.getAllAttendees();
-//            model.put("attendees", attendeeList);
-//            List<Event>events =eventDao.getAllEvents();
-//            model.put("events", events);
-//            response.redirect("/");
-//            return null;
-//        });
+        //to edit existing event
+        get("/event/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            Event foundEvent = eventDao.findById(Integer.parseInt(request.params("id")));
+            model.put("editEvent", foundEvent);
+            return new ModelAndView(model, "form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //post edited item
+        post("/event/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("eventName");
+            String description = request.queryParams("eventDescription");
+            int id = Integer.parseInt(request.params("id"));
+            eventDao.update(name, description, id);
+            List<Attendee>attendeeList = attendeeDao.getAllAttendees();
+            model.put("attendees", attendeeList);
+            List<Event>events =eventDao.getAllEvents();
+            model.put("events", events);
+            response.redirect("/");
+            return null;
+        });
 
         //get: show form to enter a new attendee
         get("/attendees/new", (request, response) -> {
@@ -95,24 +97,23 @@ public class App {
         }, new HandlebarsTemplateEngine());
 //
         //post: process new attendee
-        post("/attendees/new", (request, response) -> {
+        post("/attendees/new", (Request request, Response response) -> {
             Map<String, Object> model = new HashMap<>();
-            String event = request.queryParams("event");
+            String eventName = request.queryParams("event");
             String attendeeName = request.queryParams("attendeeName");
             Integer age= Integer.parseInt(request.queryParams("age"));
-            int resId = eventDao.findByName(event);
-            Attendee attendee = new Attendee(attendeeName, age, resId );
+            Integer eventId = eventDao.findByName(eventName);
+            Attendee attendee = new Attendee(attendeeName, age, eventId);
             attendeeDao.add(attendee);
             List<Attendee> attendeeList = attendeeDao.getAllAttendees();
             model.put("attendees", attendeeList);
             List<Event> events = eventDao.getAllEvents();
             model.put("events", events);
-            response.redirect("/");
-            return null;
-        });
+            return new ModelAndView(model,"index.hbs");
+        }, new HandlebarsTemplateEngine());
 
         //see attendee details
-        get("/events/:eventId/attendees/:attendeeId", (request, response) ->{
+        get("/event/:eventId/attendees/:attendeeId", (request, response) ->{
             Map<String, Object> model = new HashMap<>();
             Attendee attendee = attendeeDao.findAttendeeById(Integer.parseInt(request.params("attendeeId")));
             model.put("attendee", attendee);
@@ -122,7 +123,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get a form to update  a attendees
-        get("/neighborhoods/:neighborhoodId/happyhours/:id/edit", (request, response) -> {
+        get("/event/:eventId/attendees/:id/edit", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             Attendee editAttendee = attendeeDao.findAttendeeById(Integer.parseInt(request.params("id")));
             List<Event> events = eventDao.getAllEvents();
@@ -131,8 +132,8 @@ public class App {
             return new ModelAndView(model, "attendee-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: update happy hour
-        post("/events/:eventId/attendees/:id/edit", (request, response) -> {
+        //post: update attendees
+        post("/event/:eventId/attendees/:id/edit", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String event = request.queryParams("event");
             String attendeeName = request.queryParams("attendeeName");
@@ -146,8 +147,8 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
 
-        //get: delete a happyhour
-        get("/events/:eventId/attendees/:id/delete", (request, response) -> {
+        //get: delete an attnedee
+        get("/event/:eventId/attendees/:id/delete", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             attendeeDao.deleteAttendeeById(Integer.parseInt(request.params("id")));
             List<Attendee> attendeeList = attendeeDao.getAllAttendees();
@@ -157,7 +158,7 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: delete all happy hours
+        //get: delete all attendees
         get("/attendees/delete", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             attendeeDao.deleteAllAttendees();
@@ -166,8 +167,8 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: display a new neighborhood
-        get("/events/:id", (request, response) -> {
+        //get: display a new event
+        get("/event/:id", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(request.params("id"));
             List<Attendee> attendeeByEvent = eventDao.getAllAttendeesByEvent(id);
@@ -180,7 +181,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //get: delete a neighborhood
-        get("/events/:id/delete", (request, response) -> {
+        get("/event/:id/delete", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             int id = Integer.parseInt(request.params("id"));
             eventDao.deleteEventById(id);
