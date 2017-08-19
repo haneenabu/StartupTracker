@@ -100,7 +100,7 @@ public class App {
         post("/attendees/new", (Request request, Response response) -> {
             Map<String, Object> model = new HashMap<>();
             String eventName = request.queryParams("event");
-            String attendeeName = request.queryParams("attendeeName");
+            String attendeeName = request.queryParams("AttendeeName");
             Integer age= Integer.parseInt(request.queryParams("age"));
             Integer eventId = eventDao.findByName(eventName);
             Attendee attendee = new Attendee(attendeeName, age, eventId);
