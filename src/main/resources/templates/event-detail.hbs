@@ -1,17 +1,18 @@
 {{#partial "content"}}
-    <p>Event Title: {{events.name}}</p>
+    <p>Event Title: {{thisEvent.name}}</p>
 
-    <p>Description: {{events.description}}</p>
+    <p>Description: {{thisEvent.description}}</p>
 
     <p>Attendees: </p>
     <ul>
-    {{#each events.attendees}}
+    {{#each attendees}}
             <li>{{ this }}</li>
     {{/each}}
-    </ul>
 
-    <p><a href="/event/{{events.id}}/edit"><button class="btn btn-info">Edit this item</button></a></p>
-    <p><a href="/event/{{events.id}}/delete"><button class="btn btn-info">Delete this item</button></a></p>
+    </ul>
+    <p><a href="/attendees/new/1"><button class="btn btn-info">Add New Attendee!</button></a></p>
+    <p><a href="/event/{{thisEvent.id}}/edit"><button class="btn btn-info">Edit this event</button></a></p>
+    <p><a href="/event/{{events.id}}/delete"><button class="btn btn-info">Delete this event</button></a></p>
 {{/partial}}
 
 {{> layout.hbs}}

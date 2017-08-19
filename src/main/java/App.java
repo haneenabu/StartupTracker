@@ -66,6 +66,44 @@ public class App {
             return null;
         });
 
+        //get: display a new event
+        get("/event/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(request.params("id"));
+            List<Attendee> attendeeByEvent = eventDao.getAllAttendeesByEvent(id);
+            List<Event> events = eventDao.getAllEvents();
+            model.put("events", events);
+            model.put("attendees", attendeeByEvent);
+            Event thisEvent = eventDao.findById(id);
+            model.put("thisEvent", thisEvent);
+            return new ModelAndView(model, "event-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //to edit existing event
+        get("/event/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idEvent =Integer.parseInt(request.params("id"));
+            Event foundEvent = eventDao.findById(idEvent);
+            model.put("editEvent", foundEvent);
+            List<Event> eventList = eventDao.getAllEvents();
+            model.put("events", eventList);
+            return new ModelAndView(model, "form.hbs");
+        }, new HandlebarsTemplateEngine());
+        //post edited item
+        post("/event/:id/edit", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            String name = request.queryParams("eventName");
+            String description = request.queryParams("eventDescription");
+            int id = Integer.parseInt(request.params("id"));
+            eventDao.update(name, description, id);
+            List<Attendee>attendeeList = attendeeDao.getAllAttendees();
+            model.put("attendees", attendeeList);
+            List<Event>events =eventDao.getAllEvents();
+            model.put("events", events);
+            response.redirect("/");
+            return null;
+        });
+
 
     }
 }
