@@ -3,11 +3,11 @@
         <div class="well">
             <h3>Details About {{attendees.attendeeName}}: </h3>
             <ul>
-                <li>{{attendees.attendeeName}}</li>
-                <li>{{attendees.age}}</li>
+                <p>{{attendees.attendeeName}}</p>
+                <p>{{attendees.age}}</p>
             </ul>
-            <a class="btn btn-info" href="/event/{{attendee.eventId}}/attendees/{{attendee.id}}/edit">Edit</a>
-            <a class="btn btn-info" href="/event/{{attendee.eventId}}/attendees/{{attendee.id}}/delete">delete</a>
+            <a class="btn btn-info" href="/event/{{attendees.eventId}}/attendees/{{attendees.id}}/edit">Edit</a>
+            <a class="btn btn-info" href="/event/{{attendees.eventId}}/attendees/{{attendees.id}}/delete">Delete</a>
 
         </div>
     {{/if}}

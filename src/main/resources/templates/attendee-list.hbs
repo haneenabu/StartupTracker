@@ -1,0 +1,24 @@
+{{#partial "content"}}
+
+    <h1>Startup Attendee list!</h1>
+
+    {{#if attendees}}
+        {{#each attendees}}
+            <div class="col-md-6">
+                <p><a href="/attendees/{{id}}">{{attendeeName}}</a></p>
+
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Attendees Available!</p>
+    {{/if}}
+
+    <footer class="footer">
+        <div class="container">
+            <!--create route to delete all attendees -->
+            <p class="text-muted"><a href="/attendees/delete">Delete All Attendees!</a></p>
+        </div>
+    </footer>
+{{/partial}}
+
+{{> layout.hbs}}
