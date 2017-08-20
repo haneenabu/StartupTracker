@@ -6,13 +6,15 @@
     <p>Attendees: </p>
     <ul>
     {{#each attendees}}
-            <li>{{ this }}</li>
+        <div class="well">
+            <li><a href="/event/{{thisEvent.id}}/attendees/{{this.id}}">{{this.attendeeName }}</a></li>
+        </div>
     {{/each}}
 
     </ul>
-    <p><a href="/attendees/new/1"><button class="btn btn-info">Add New Attendee!</button></a></p>
+    <p><a href="/attendees/new"><button class="btn btn-info">Add New Attendee!</button></a></p>
     <p><a href="/event/{{thisEvent.id}}/edit"><button class="btn btn-info">Edit this event</button></a></p>
-    <p><a href="/event/{{events.id}}/delete"><button class="btn btn-info">Delete this event</button></a></p>
+    <p><a href="/event/{{thisEvent.id}}/delete"><button class="btn btn-info">Delete this event</button></a></p>
 {{/partial}}
 
 {{> layout.hbs}}
