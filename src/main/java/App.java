@@ -202,18 +202,6 @@ public class App {
             model.put("events", events);
             return new ModelAndView(model, "attendee-list.hbs");
         }, new HandlebarsTemplateEngine());
-        //get: see attendee details
-        get("/attendees/:id", (request, response) -> {
-            Map<String, Object> model = new HashMap<>();
-            int id = Integer.parseInt(request.params("id"));
-            List<Attendee> attendeeByEvent = eventDao.getAllAttendeesByEvent(id);
-            List<Event> events = eventDao.getAllEvents();
-            model.put("events", events);
-            model.put("attendees", attendeeByEvent);
-            Attendee thisAttendee = attendeeDao.findAttendeeById(id);
-            model.put("thisEvent", thisAttendee);
-            return new ModelAndView(model, "attendee-detail.hbs");
-        }, new HandlebarsTemplateEngine());
 
     }
 }
