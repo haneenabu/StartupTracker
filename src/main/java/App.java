@@ -153,11 +153,12 @@ public class App {
         post("/event/:eventId/attendees/:id/edit", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             String event = request.queryParams("event");
-            String attendeeName = request.queryParams("attendeeName");
+            String attendeeName = request.queryParams("AttendeeName");
             int age = Integer.parseInt(request.queryParams("age"));
             int resId = eventDao.findByName(event);
             int id = Integer.parseInt(request.params("id"));
             attendeeDao.updateAttendee(attendeeName, age, id, resId );
+            System.out.println(attendeeDao.findAttendeeById(id).getAttendeeName());
             List<Attendee> attendeeList = attendeeDao.getAllAttendees();
             model.put("attendees", attendeeList);
             return new ModelAndView(model,"attendee-list.hbs");

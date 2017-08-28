@@ -62,7 +62,10 @@ public class Sql2oAttendeeDaoTest {
         int attendeeId = attendee1.getId();
         int eventId = 1;
         attendeeDao.updateAttendee("Yasmeen", 24, attendeeId, eventId);
-        assertEquals("Yasmeen", attendeeDao.findAttendeeById(attendeeId).getAttendeeName());
+        Attendee updatedAttendee = attendeeDao.findAttendeeById(attendee1.getId());
+        //assertEquals("Yasmeen", attendeeDao.findAttendeeById(attendeeId).getAttendeeName());
+        System.out.println(attendee.getAttendeeName());
+        assertEquals("Yasmeen", updatedAttendee.getAttendeeName());
     }
     @Test
     public void attendeeDeleteAll_True() throws Exception{
